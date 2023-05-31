@@ -6,10 +6,7 @@ import com.ari.backend.service.text_JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +18,9 @@ public class Json_TextController {
     @Autowired
     json_textService jsonTextService
             ;
-    @PostMapping("/convert")
-    public ResponseEntity textToJson(@RequestBody JsonObject jsonObject) {
-        String textFileString = jsonTextService.jsonToText(jsonObject);
+    @PostMapping("/convert/{key}")
+    public ResponseEntity textToJson(@RequestBody JsonObject jsonObject, @PathVariable String key) {
+        String textFileString = jsonTextService.jsonToText(jsonObject,key);
         return ResponseEntity.status(HttpStatus.CREATED).body(textFileString);
     }
 }

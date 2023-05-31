@@ -15,9 +15,9 @@ public class text_JsonController {
 
     @Autowired
     text_JsonService textJsonService;
-    @PostMapping("/convert")
-    public ResponseEntity textToJson(@RequestBody String textFileString) throws Exception {
-        List<JsonObject> jsonObject = textJsonService.convertTextToJson(textFileString);
+    @PostMapping("/convert/{key}")
+    public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
+        List<JsonObject> jsonObject = textJsonService.convertTextToJson(textFileString,key);
         return ResponseEntity.status(HttpStatus.CREATED).body(jsonObject);
     }
 }

@@ -6,10 +6,7 @@ import com.ari.backend.service.xml_TextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +16,9 @@ public class xml_TextController {
 
     @Autowired
     xml_TextService xmlTextService;
-    @PostMapping("/convert")
-    public ResponseEntity textToJson(@RequestBody XmlObject xmlObject) throws Exception {
-        String text = xmlTextService.convertXmlToText(xmlObject);
+    @PostMapping("/convert/{key}")
+    public ResponseEntity textToJson(@RequestBody XmlObject xmlObject, @PathVariable String key) throws Exception {
+        String text = xmlTextService.convertXmlToText(xmlObject,key);
         return ResponseEntity.status(HttpStatus.CREATED).body(text);
     }
 }

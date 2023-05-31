@@ -1,19 +1,22 @@
 package com.ari.backend.service;
 
 import com.ari.backend.model.*;
+import com.ari.backend.utils.vinegere;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 
 @Service
 public class json_textService {
-    public static String jsonToText(JsonObject obj) {
+    public static String jsonToText(JsonObject obj,String key) {
         Polygon polygon = obj.getPolygon();
         Features features = polygon.getFeatures();
         Geometry geometry = features.getGeometry();
         String coords = geometry.getCoordinates();
 
-        TextObject textObject = new TextObject(obj.getDui(),obj.getName(),obj.getLastname(),obj.getCardNumber(),obj.getType(),obj.getPhone(),coords);
+        String cardDecypher = vinegere.decrypt(obj.getCardNumber(),key);
+
+        TextObject textObject = new TextObject(obj.getDui(),obj.getName(),obj.getLastname(),cardDecypher,obj.getType(),obj.getPhone(),coords);
 
         if (textObject == null) {
             return null;

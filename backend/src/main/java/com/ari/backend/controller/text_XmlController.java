@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -21,9 +18,9 @@ public class text_XmlController {
 
     @Autowired
     text_XmlService textXmlService;
-    @PostMapping(path = "/convert", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity textToJson(@RequestBody String textFileString) throws Exception {
-        String xml = textXmlService.convertTextToXml(textFileString);
+    @PostMapping(path = "/convert/{key}", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
+        String xml = textXmlService.convertTextToXml(textFileString,key);
         return ResponseEntity.status(HttpStatus.CREATED).body(xml);
     }
 }

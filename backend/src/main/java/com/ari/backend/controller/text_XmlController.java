@@ -21,8 +21,8 @@ public class text_XmlController {
     @Autowired
     text_XmlService textXmlService;
     @PostMapping("/convert")
-    public String textToJson(@RequestBody String textFileString) throws ParserConfigurationException, TransformerException {
-        String Xml = textXmlService.convertTextToXml(textFileString);
-        return Xml;
+    public ResponseEntity textToJson(@RequestBody String textFileString) throws Exception {
+        String xml = textXmlService.convertTextToXml(textFileString);
+        return ResponseEntity.status(HttpStatus.CREATED).body(xml);
     }
 }

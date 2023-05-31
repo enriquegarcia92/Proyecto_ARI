@@ -1,5 +1,8 @@
 package com.ari.backend.service;
 
+import com.ari.backend.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,34 +17,25 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class text_XmlService {
-    public static String convertTextToXml(String inputString) throws ParserConfigurationException, TransformerException {
-        // Create a DocumentBuilderFactory instance.
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    public String convertTextToXml(String s) throws JsonProcessingException {
 
-        // Create a DocumentBuilder instance.
-        DocumentBuilder builder = factory.newDocumentBuilder();
+        String[] tokens = s.split(";");
+        //Create an XmlMapper object
+        XmlMapper xmlMapper = new XmlMapper();
 
-        // Create a Document instance.
-        Document document = builder.newDocument();
+        String xml = "";
+        StringBuilder sb = new StringBuilder();
 
-        // Create the element `data`.
-        Element data = document.createElement("data");
-
-        // Create child elements.
-        for (String value : inputString.split(";")) {
-            Element childElement = document.createElement("value");
-            childElement.setTextContent(value);
-            data.appendChild(childElement);
+        for (int i = 0; i < tokens.length; i += 7) {
+            XmlObject text = new XmlObject(tokens[i],tokens[i+1],tokens[i+2],tokens[i+3],tokens[i+4],tokens[i+5],tokens[i+6]);
+            String xmlaux = xmlMapper.writeValueAsString(text);
+            sb.append(xmlaux).append("\n");
         }
-
-        // Convert the Document instance to a string.
-        Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        StringWriter writer = new StringWriter();
-        transformer.transform(new DOMSource(document), new StreamResult(writer));
-        // Return the string.
-        return writer.toString().replaceAll("\n", "");
+        return sb.toString().substring(0, sb.length() - 1);
     }
 }

@@ -1,16 +1,29 @@
 import "./App.scss";
+import { FileUpload } from "./features/FileUpload";
 
 function App() {
   return (
     <div className="Container">
       <div className="header">
-        <h1>JSON/XML Converter</h1>
+        <h1 className="">JSON/XML Converter</h1>
       </div>
       <div className="converter_section">
         <div className="converter">
           <div className="card">
             <div className="card-header">
-              <h3 className="card-title">Input</h3>
+              <h3 className="card-title me-3">Input</h3>
+              <input
+                type="text"
+                className="form-control me-3"
+                id="secretInput"
+                placeholder="secret"
+              />
+              <input
+                type="text"
+                className="form-control me-3"
+                id="limiterInput"
+                placeholder="limiter"
+              />
               <select
                 className="form-select form-select-sm"
                 aria-label=".form-select-sm example"
@@ -22,23 +35,11 @@ function App() {
                 <option value="3">XML</option>
               </select>
             </div>
-            <div className="card-body"></div>
+            <div className="card-body">
+
+            </div>
             <div className="card-footer">
-              <input
-                type="text"
-                className="form-control me-3"
-                id="limiterInput"
-                placeholder="limiter"
-              />
-              <input
-                type="text"
-                className="form-control me-3"
-                id="secretInput"
-                placeholder="secret"
-              />
-              <button className="btn btn-primary me-3">
-                Upload File
-              </button>
+              <FileUpload />
               <button className="btn btn-primary me-3">Convert</button>
             </div>
           </div>

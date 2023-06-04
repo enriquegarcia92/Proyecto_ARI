@@ -1,7 +1,15 @@
+import { useState } from "react";
 import "./App.scss";
 import { FileUpload } from "./features/FileUpload";
 
 function App() {
+
+  const [inputContent, setInputContent] = useState("");
+
+  const handleContentChange = (content) => {
+    setInputContent(content)
+  };
+
   return (
     <div className="Container">
       <div className="header">
@@ -36,10 +44,10 @@ function App() {
               </select>
             </div>
             <div className="card-body">
-
+                {inputContent}
             </div>
             <div className="card-footer">
-              <FileUpload />
+            <FileUpload onContentChange={handleContentChange}/>
               <button className="btn btn-primary me-3">Convert</button>
             </div>
           </div>

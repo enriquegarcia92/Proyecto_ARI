@@ -3,9 +3,9 @@ import "./App.scss";
 import { FileUpload } from "./features/FileUpload";
 import axios from "./api/axios";
 import StringReplacement from "./features/StringReplacement";
+import ConvertFile from "./features/ConvertFile";
 
 function App() {
-
   const [inputContent, setInputContent] = useState("");
   const [replacementChar, setReplacementChar] = useState("");
   const [newString, setNewString] = useState("");
@@ -14,7 +14,7 @@ function App() {
 
   // callback function sent as prop to FileUpload.jsx that retrieves uploaded file's content
   const handleContentChange = (content) => {
-    setInputContent(content)
+    setInputContent(content);
   };
 
   // callback function to retrieve string where limiter character has been replaced by ";"
@@ -26,21 +26,7 @@ function App() {
   //function that runs everytime limiter input changes to generate a string where the limiter is replaced by ";"
   const handleLimiterChange = (event) => {
     setReplacementChar(event.target.value);
-  }
-
-
-  const handleConversion = (e) => {
-    e.preventDefault();
-    console.log(newString);
-  }
-  /*const handleConversion = (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post()
-    }catch(err){
-      console.log(err);
-    }
-  }*/
+  };
 
   return (
     <div className="Container">
@@ -69,22 +55,27 @@ function App() {
               <select
                 className="form-select form-select-sm"
                 aria-label=".form-select-sm example"
-                onChange={(e) => {setInputType(e.target.value)}}
+                onChange={(e) => {
+                  setInputType(e.target.value);
+                }}
               >
                 <option value="0">Input Type</option>
-                <option value="1">
-                  Text
-                </option>
+                <option value="1">Text</option>
                 <option value="2">JSON</option>
                 <option value="3">XML</option>
               </select>
             </div>
             <div className="card-body">
-                <StringReplacement inputString={inputContent}  replacementChar={replacementChar} onStringChange={handleStringChange} inputType={inputType}/>
+              <StringReplacement
+                inputString={inputContent}
+                replacementChar={replacementChar}
+                onStringChange={handleStringChange}
+                inputType={inputType}
+              />
             </div>
             <div className="card-footer">
-            <FileUpload onContentChange={handleContentChange}/>
-              <button className="btn btn-primary me-3" onClick={handleConversion}>Convert</button>
+              <FileUpload onContentChange={handleContentChange} />
+              <ConvertFile inputString={newString} inputType={inputType} outputType={outputType}/>
             </div>
           </div>
           <div className="card">
@@ -93,10 +84,12 @@ function App() {
               <select
                 className="form-select form-select-sm"
                 aria-label=".form-select-sm example"
+                onChange={(e) => {
+                  setOutputType(e.target.value);
+                }}
               >
-                <option value="1" selected>
-                  Text
-                </option>
+                <option value="0">Output Type</option>
+                <option value="1">Text</option>
                 <option value="2">JSON</option>
                 <option value="3">XML</option>
               </select>

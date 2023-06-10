@@ -18,6 +18,7 @@ public class text_XmlController {
 
     @Autowired
     text_XmlService textXmlService;
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping(path = "/convert/{key}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
         String xml = textXmlService.convertTextToXml(textFileString,key);

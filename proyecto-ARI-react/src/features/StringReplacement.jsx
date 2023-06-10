@@ -10,7 +10,7 @@ const StringReplacement = ({ inputString, replacementChar, onStringChange, input
      }else if(inputType == '2'){ // JSON
       setNewLimiter(',')
      }else if(inputType == '3'){ // XML
-      console.log('issa xml no limiter yo');
+      setNewLimiter('')
      }
   }
 

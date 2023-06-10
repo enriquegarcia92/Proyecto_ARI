@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/text_Json")
 public class text_JsonController {
 
     @Autowired
     text_JsonService textJsonService;
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/convert/{key}")
     public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
         List<JsonObject> jsonObject = textJsonService.convertTextToJson(textFileString,key);

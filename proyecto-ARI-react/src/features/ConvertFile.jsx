@@ -26,9 +26,10 @@ const ConvertFile = ({
       const output = JSON.stringify(eval(chainConcatenator));
 
       onContentConversion(output);
-
     } catch (err) {
-      onContentConversion("We were not able to convert your file, please check the instructions and try again")
+      onContentConversion(
+        "We were not able to convert your file, please check the instructions and try again"
+      );
     }
   };
 
@@ -74,6 +75,18 @@ const ConvertFile = ({
 
       case inputType == "xml" && outputType == "text": //XML TO TXT
         xmlToTextConversion(inputString);
+        break;
+
+      case inputType == "xml" && outputType == "json":
+        onContentConversion(
+          "We do not support direct conversion between xml and json files yet"
+        );
+        break;
+
+      case inputType == "json" && outputType == "xml":
+        onContentConversion(
+          "We do not support direct conversion between xml and json files yet"
+        );
         break;
 
       default:

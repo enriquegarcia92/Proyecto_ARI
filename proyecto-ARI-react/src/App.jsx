@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import { FileUpload } from "./features/FileUpload";
 import StringReplacement from "./features/StringReplacement";
@@ -23,9 +23,8 @@ function App() {
   const handleStringChange = (updatedString) => {
     setNewString(updatedString);
   };
-
-  //function that runs everytime limiter input changes to generate a string where the limiter is replaced by ";"
   const handleLimiterChange = (event) => {
+
     setReplacementChar(event.target.value);
   };
 
@@ -58,14 +57,22 @@ function App() {
                 value={secret}
                 onChange={(e) => {setSecret(e.target.value)}}
               />
-              <input
+              <select
                 type="text"
-                className="form-control me-3"
+                className="form-select form-select-sm me-3"
                 id="limiterInput"
                 placeholder="limiter"
-                value={replacementChar}
-                onChange={handleLimiterChange}
-              />
+                onChange={(e) => {
+                  setReplacementChar(e.target.value);
+                }}
+              >
+                <option value=",">,</option>
+                <option value=";">;</option>
+                <option value="/">/</option>
+                <option value="!">!</option>
+                <option value="$">$</option>
+                <option value="&">&</option>
+              </select>
               <select
                 className="form-select form-select-sm"
                 aria-label=".form-select-sm example"

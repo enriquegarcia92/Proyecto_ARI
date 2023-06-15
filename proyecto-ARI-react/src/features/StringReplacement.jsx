@@ -5,11 +5,11 @@ const StringReplacement = ({ inputString, replacementChar, onStringChange, input
   const [newLimiter, setNewLimiter] = useState('');
 
   const defineNewLimiter = (inputType) => {
-     if(inputType == '1'){ // TEXT
+     if(inputType == 'text'){ // TEXT
       setNewLimiter(';')
      }else if(inputType == '2'){ // JSON
-      setNewLimiter(',')
-     }else if(inputType == '3'){ // XML
+      setNewLimiter('json')
+     }else if(inputType == 'xml'){ // XML
       setNewLimiter('')
      }
   }

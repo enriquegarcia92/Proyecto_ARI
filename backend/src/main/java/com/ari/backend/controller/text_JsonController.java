@@ -16,7 +16,7 @@ public class text_JsonController {
 
     @Autowired
     text_JsonService textJsonService;
-    @CrossOrigin(origins = "https://proyecto-ari.vercel.app/")
+    @CrossOrigin(origins = {"http://localhost:5173","https://proyecto-ari.vercel.app"})
     @PostMapping("/convert/{key}")
     public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
         List<JsonObject> jsonObject = textJsonService.convertTextToJson(textFileString,key);

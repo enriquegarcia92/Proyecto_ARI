@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/json_Text")
-
 public class Json_TextController {
 
     @Autowired
     json_textService jsonTextService;
-    @CrossOrigin(origins = {"http://localhost:5173","https://proyecto-ari.vercel.app"})
     @PostMapping("/convert/{key}")
     public ResponseEntity textToJson(@RequestBody JsonObject jsonObject, @PathVariable String key) {
         String textFileString = jsonTextService.jsonToText(jsonObject,key);

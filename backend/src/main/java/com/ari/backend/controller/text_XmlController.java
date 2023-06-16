@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/text_Xml")
 public class text_XmlController {
 
     @Autowired
     text_XmlService textXmlService;
-    @CrossOrigin(origins = {"http://localhost:5173","https://proyecto-ari.vercel.app"})
     @PostMapping(path = "/convert/{key}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity textToJson(@RequestBody String textFileString, @PathVariable String key) throws Exception {
         String xml = textXmlService.convertTextToXml(textFileString,key);

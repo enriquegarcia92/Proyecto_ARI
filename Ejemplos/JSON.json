@@ -1,0 +1,13 @@
+{"dui":"06044102-0",
+"name":"José Enrique",
+"lastname":"García Arévalo",
+"cardNumber":"MzUzajRrMGEyaDRxNWM5bA==",
+"polygon":{"type":"FeatureCollection",
+"crs":{"type":"name",
+        "properties":{"name":"EPSG:4326"}},
+        "features":{"type":"Feature",
+        "geometry":{"type":"polygon",
+        "coordinates":"(-90.76)(17.9991)"},
+        "properties":{"land_use":"I"}}},
+"type":"GOLD",
+"phone":"70829262"}

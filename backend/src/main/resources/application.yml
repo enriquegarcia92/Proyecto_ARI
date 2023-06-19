@@ -1,9 +1,0 @@
-server:
-  ssl:
-    key-alias: spring-https
-    key-store: classpath:springhttps.jks
-    key-store-type: JKS
-    key-store-password: 123456789
-    key-password: 123456789
-
-  port: 443

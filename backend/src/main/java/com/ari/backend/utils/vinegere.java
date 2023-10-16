@@ -4,7 +4,7 @@ import java.util.Base64;
 
 public class vinegere {
     private static final String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
-
+    //cifrado de vinegere
     public static String encrypt(String input, String key) {
         int keyLength = key.length();
         StringBuilder encryptedText = new StringBuilder();
